@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
 	http_response_code(404);
