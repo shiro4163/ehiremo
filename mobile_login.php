@@ -3,6 +3,8 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
+$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
 	http_response_code(404);
 	echo "Not Found";
@@ -12,13 +14,10 @@ if($_SERVER["REQUEST_METHOD"] !== "POST"){
 include "backend/config/database.php";
 include "backend/models/users.php";
 
-// instantiate database
 $database = new Database();
 $db = $database->getConnection();
 
-//instantiate user
 $user = new Users($db);
-
 $data = json_decode(file_get_contents("php://input"));
 
 $user->email = $data->username;
